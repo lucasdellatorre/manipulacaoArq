@@ -5,13 +5,17 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 public class App
 {
     private Scanner in;
+    private List<ColetaSeletiva> list;
     public App()
     {
         in = new Scanner(System.in);
+        list = new ArrayList<>();
     }
 
     public void inicializa()
@@ -34,6 +38,8 @@ public class App
                 int parFim = sc.nextInt();
                 int parInicio = sc.nextInt();
                 String area = sc.next();
+                list.add(new ColetaSeletiva(dataExtracao, categoria, codLogradouro, diasColeta,
+                imparFim, imparInic, lado, nomeLogradouro, parFim, parInicio, area));
             }
         }
         catch(IOException io)
@@ -60,6 +66,7 @@ public class App
                 case 0:
                     break;
                 case 1:
+                    inicializa();
                     break;
                 case 2:
                     break;
