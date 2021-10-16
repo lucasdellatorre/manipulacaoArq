@@ -7,11 +7,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 public class App
 {
     private Scanner in;
-    private List<ColetaSeletiva> list;
+    private List<ColetaDomiciliar> list;
     public App()
     {
         in = new Scanner(System.in);
@@ -26,25 +27,25 @@ public class App
             String line = br.readLine();
             while((line = br.readLine()) != null)
             {
-                String[] atributos = line.split(";");
-                String dataExtracao = atributos[0];
-                String categoria = atributos[1];
-                String codLogradouro = atributos[2];
-                String diasColeta = atributos[3];
-                int imparFim = Integer.parseInt(atributos[4]);
-                int imparInic = Integer.parseInt(atributos[5]);
-                String lado = atributos[6];
-                String nomeLogradouro = atributos[7];
-                int parFim = Integer.parseInt(atributos[8]);
-                int parInicio = Integer.parseInt(atributos[9]);
-                String area = atributos[10];
+                Scanner sc = new Scanner(line).useDelimiter(";");
+                String dataExtracao = sc.next();
+                String categoria = sc.next();
+                String codLogradouro = sc.next();
+                String diasColeta = sc.next();
+                int imparFim = Integer.parseInt(sc.next());
+                int imparInic = Integer.parseInt(sc.next());
+                String lado = sc.next();
+                String nomeLogradouro = sc.next();
+                int parFim = Integer.parseInt(sc.next());
+                int parInicio = Integer.parseInt(sc.next());
+                String area = sc.next();
                 list.add(new ColetaSeletiva(dataExtracao, categoria, codLogradouro, diasColeta,
                 imparFim, imparInic, lado, nomeLogradouro, parFim, parInicio, area));
             }
         }
         catch(IOException io)
         {
-            System.err.format("Erro de E/S: %s%n", e1);
+            System.err.format("Erro de E/S: %s%n", io);
         }
         catch(Exception e)
         {
@@ -69,6 +70,7 @@ public class App
                     inicializa();
                     break;
                 case 2:
+                    mostraInformacoes();
                     break;
                 case 3:
                     break;
@@ -79,6 +81,18 @@ public class App
         }while(op != 0);
     }
 
+    public void mostraInformacoes()
+    {
+        String msg = null;
+        for(ColetaDomiciliar cd : list)
+        {
+            msg += cd.toString() + "\n";
+        }
+        if(msg == null)
+            throw new NoSuchElementException();
+        else
+            System.out.println(msg);
+    }
     private void apresentaMenuOpcoes()
     {
         System.out.println("[0] Sair");

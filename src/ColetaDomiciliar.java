@@ -1,4 +1,4 @@
-public class ColetaSeletiva
+public class ColetaDomiciliar
 {
     private String dataExtracao;
     private String categoria;
@@ -12,7 +12,7 @@ public class ColetaSeletiva
     private int parInicio;
     private String area;
 
-    public ColetaSeletiva
+    public ColetaDomiciliar
             (String dataExtracao, String categoria, String codLogradouro,
              String diasColeta, int imparFim, int imparInicio, String lado,
              String nomeLogradouro, int parFim, int parInicio, String area)
@@ -32,17 +32,17 @@ public class ColetaSeletiva
 
     public String toString()
     {
-        return "Data Extracao: " + dataExtracao + "\n" +
-                " | Categoria: " + categoria + "\n" +
-                " | Codigo do Logradouro: " + codLogradouro + "\n" +
-                " | Dias de Coleta: " + diasColeta + "\n" +
-                " | Impar Fim: " + imparFim + "\n" +
-                " | Impar Inicio: " + imparInicio + "\n" +
-                " | Lado: " + imparInicio + "\n" +
-                " | Nome do Logradouro: " + imparInicio + "\n" +
-                " | Par Fim: " + imparInicio + "\n" +
-                " | Par Inicio: " + imparInicio + "\n" +
-                " | Area: " + imparInicio + "\n";
+        return "Data Extracao: " + dataExtracao +
+                " | Categoria: " + categoria +
+                " | Codigo do Logradouro: " + codLogradouro +
+                " | Dias de Coleta: " + diasColeta +
+                " | Impar Fim: " + imparFim +
+                " | Impar Inicio: " + imparInicio +
+                " | Lado: " + lado +
+                " | Nome do Logradouro: " + nomeLogradouro +
+                " | Par Fim: " + parFim +
+                " | Par Inicio: " + parInicio +
+                " | Area: " + area;
     }
     public String getDataExtracao() {
         return dataExtracao;
@@ -88,3 +88,5 @@ public class ColetaSeletiva
         return area;
     }
 }
+
+
