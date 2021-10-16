@@ -21,7 +21,9 @@ public class App
 
     public void inicializa()
     {
-        Path path = Paths.get("coleta_domiciliar.csv");
+        System.out.println("Informe o do arquivo: ");
+        String arq = in.nextLine();
+        Path path = Paths.get(arq);
         try(BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset()))
         {
             String line = br.readLine();
