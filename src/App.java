@@ -25,6 +25,7 @@ public class App
         try(BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset()))
         {
             String line = br.readLine();
+            line = br.readLine();
             while((line = br.readLine()) != null)
             {
                 String[] atributos = line.split(";");
