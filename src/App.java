@@ -38,10 +38,11 @@ public class App
 
     private void apresentaMenuOpcoes()
     {
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        System.out.println("[0] Sair");
+        System.out.println("[1] Carregar dados");
+        System.out.println("[2] Apresentar dados");
+        System.out.println("[3] Consultar por endereco");
+        System.out.println("[4] Salvar dados da consulta");
 
     }
 
