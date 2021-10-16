@@ -28,18 +28,18 @@ public class App
             line = br.readLine();
             while((line = br.readLine()) != null)
             {
-                String[] atributos = line.split(";");
-                String dataExtracao = atributos[0];
-                String categoria = atributos[1];
-                String codLogradouro = atributos[2];
-                String diasColeta = atributos[3];
-                int imparFim = Integer.parseInt(atributos[4]);
-                int imparInic = Integer.parseInt(atributos[5]);
-                String lado = atributos[6];
-                String nomeLogradouro = atributos[7];
-                int parFim = Integer.parseInt(atributos[8]);
-                int parInicio = Integer.parseInt(atributos[9]);
-                String area = atributos[10];
+                Scanner sc = new Scanner(line).useDelimiter(";");
+                String dataExtracao = sc.next();
+                String categoria = sc.next();
+                String codLogradouro = sc.next();
+                String diasColeta = sc.next();
+                int imparFim = Integer.parseInt(sc.next());
+                int imparInic = Integer.parseInt(sc.next());
+                String lado = sc.next();
+                String nomeLogradouro = sc.next();
+                int parFim = Integer.parseInt(sc.next());
+                int parInicio = Integer.parseInt(sc.next());
+                String area = sc.next();
                 list.add(new ColetaDomiciliar(dataExtracao, categoria, codLogradouro, diasColeta,
                 imparFim, imparInic, lado, nomeLogradouro, parFim, parInicio, area));
             }
