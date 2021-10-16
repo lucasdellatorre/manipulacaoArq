@@ -1,4 +1,4 @@
-public class ColetaSeletiva
+public class ColetaDomiciliar
 {
     private String dataExtracao;
     private String categoria;
@@ -12,7 +12,7 @@ public class ColetaSeletiva
     private int parInicio;
     private String area;
 
-    public ColetaSeletiva
+    public ColetaDomiciliar
             (String dataExtracao, String categoria, String codLogradouro,
              String diasColeta, int imparFim, int imparInicio, String lado,
              String nomeLogradouro, int parFim, int parInicio, String area)
@@ -88,3 +88,5 @@ public class ColetaSeletiva
         return area;
     }
 }
+
+

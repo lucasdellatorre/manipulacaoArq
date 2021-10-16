@@ -7,11 +7,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 public class App
 {
     private Scanner in;
-    private List<ColetaSeletiva> list;
+    private List<ColetaDomiciliar> list;
     public App()
     {
         in = new Scanner(System.in);
@@ -31,12 +32,12 @@ public class App
                 String categoria = sc.next();
                 String codLogradouro = sc.next();
                 String diasColeta = sc.next();
-                int imparFim = sc.nextInt();
-                int imparInic = sc.nextInt();
+                int imparFim = Integer.parseInt(sc.next());
+                int imparInic = Integer.parseInt(sc.next());
                 String lado = sc.next();
                 String nomeLogradouro = sc.next();
-                int parFim = sc.nextInt();
-                int parInicio = sc.nextInt();
+                int parFim = Integer.parseInt(sc.next());
+                int parInicio = Integer.parseInt(sc.next());
                 String area = sc.next();
                 list.add(new ColetaSeletiva(dataExtracao, categoria, codLogradouro, diasColeta,
                 imparFim, imparInic, lado, nomeLogradouro, parFim, parInicio, area));
@@ -44,7 +45,7 @@ public class App
         }
         catch(IOException io)
         {
-            System.err.format("Erro de E/S: %s%n", e1);
+            System.err.format("Erro de E/S: %s%n", io);
         }
         catch(Exception e)
         {
@@ -82,10 +83,15 @@ public class App
 
     public void mostraInformacoes()
     {
-        for(ColetaSeletiva cs : list)
+        String msg = null;
+        for(ColetaDomiciliar cd : list)
         {
-            System.out.println(cs);
+            msg += cd.toString() + "\n";
         }
+        if(msg == null)
+            throw new NoSuchElementException();
+        else
+            System.out.println(msg);
     }
     private void apresentaMenuOpcoes()
     {
