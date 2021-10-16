@@ -69,6 +69,7 @@ public class App
                     inicializa();
                     break;
                 case 2:
+                    mostraInformacoes();
                     break;
                 case 3:
                     break;
@@ -79,6 +80,13 @@ public class App
         }while(op != 0);
     }
 
+    public void mostraInformacoes()
+    {
+        for(ColetaSeletiva cs : list)
+        {
+            System.out.println(cs);
+        }
+    }
     private void apresentaMenuOpcoes()
     {
         System.out.println("[0] Sair");
