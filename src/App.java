@@ -29,17 +29,17 @@ public class App
             while((line = br.readLine()) != null)
             {
                 Scanner sc = new Scanner(line).useDelimiter(";");
-                String dataExtracao = sc.next();
-                String categoria = sc.next();
-                String codLogradouro = sc.next();
-                String diasColeta = sc.next();
+                String dataExtracao = sc.next().trim();
+                String categoria = sc.next().trim();
+                String codLogradouro = sc.next().trim();
+                String diasColeta = sc.next().trim();
                 int imparFim = Integer.parseInt(sc.next());
                 int imparInic = Integer.parseInt(sc.next());
-                String lado = sc.next();
-                String nomeLogradouro = sc.next();
+                String lado = sc.next().trim();
+                String nomeLogradouro = sc.next().trim();
                 int parFim = Integer.parseInt(sc.next());
                 int parInicio = Integer.parseInt(sc.next());
-                String area = sc.next();
+                String area = sc.next().trim();
                 list.add(new ColetaDomiciliar(dataExtracao, categoria, codLogradouro, diasColeta,
                 imparFim, imparInic, lado, nomeLogradouro, parFim, parInicio, area));
             }
