@@ -21,7 +21,7 @@ public class App
 
     public void inicializa()
     {
-        Path path = Paths.get("coleta_seletiva.csv");
+        Path path = Paths.get("coleta_domiciliar.csv");
         try(BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset()))
         {
             String line = br.readLine();
@@ -83,10 +83,10 @@ public class App
 
     public void mostraInformacoes()
     {
-        String msg = null;
+        StringBuilder msg = new StringBuilder();
         for(ColetaDomiciliar cd : list)
         {
-            msg += cd.toString() + "\n";
+            msg.append(cd.toString()).append("\n");
         }
         if(msg == null)
             throw new NoSuchElementException();
