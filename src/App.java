@@ -39,7 +39,7 @@ public class App
                 int parFim = Integer.parseInt(sc.next());
                 int parInicio = Integer.parseInt(sc.next());
                 String area = sc.next();
-                list.add(new ColetaSeletiva(dataExtracao, categoria, codLogradouro, diasColeta,
+                list.add(new ColetaDomiciliar(dataExtracao, categoria, codLogradouro, diasColeta,
                 imparFim, imparInic, lado, nomeLogradouro, parFim, parInicio, area));
             }
         }
