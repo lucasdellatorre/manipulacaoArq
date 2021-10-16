@@ -30,6 +30,20 @@ public class ColetaSeletiva
         this.area = area;
     }
 
+    public String toString()
+    {
+        return "Data Extracao: " + dataExtracao + "\n" +
+                " | Categoria: " + categoria + "\n" +
+                " | Codigo do Logradouro: " + codLogradouro + "\n" +
+                " | Dias de Coleta: " + diasColeta + "\n" +
+                " | Impar Fim: " + imparFim + "\n" +
+                " | Impar Inicio: " + imparInicio + "\n" +
+                " | Lado: " + imparInicio + "\n" +
+                " | Nome do Logradouro: " + imparInicio + "\n" +
+                " | Par Fim: " + imparInicio + "\n" +
+                " | Par Inicio: " + imparInicio + "\n" +
+                " | Area: " + imparInicio + "\n";
+    }
     public String getDataExtracao() {
         return dataExtracao;
     }
