@@ -32,17 +32,17 @@ public class ColetaDomiciliar
 
     public String toString()
     {
-        return "Data Extracao: " + dataExtracao + "\n" +
-                " | Categoria: " + categoria + "\n" +
-                " | Codigo do Logradouro: " + codLogradouro + "\n" +
-                " | Dias de Coleta: " + diasColeta + "\n" +
-                " | Impar Fim: " + imparFim + "\n" +
-                " | Impar Inicio: " + imparInicio + "\n" +
-                " | Lado: " + imparInicio + "\n" +
-                " | Nome do Logradouro: " + imparInicio + "\n" +
-                " | Par Fim: " + imparInicio + "\n" +
-                " | Par Inicio: " + imparInicio + "\n" +
-                " | Area: " + imparInicio + "\n";
+        return "Data Extracao: " + dataExtracao +
+                " | Categoria: " + categoria +
+                " | Codigo do Logradouro: " + codLogradouro +
+                " | Dias de Coleta: " + diasColeta +
+                " | Impar Fim: " + imparFim +
+                " | Impar Inicio: " + imparInicio +
+                " | Lado: " + lado +
+                " | Nome do Logradouro: " + nomeLogradouro +
+                " | Par Fim: " + parFim +
+                " | Par Inicio: " + parInicio +
+                " | Area: " + area;
     }
     public String getDataExtracao() {
         return dataExtracao;
