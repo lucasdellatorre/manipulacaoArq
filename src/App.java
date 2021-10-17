@@ -11,12 +11,12 @@ public class App
 {
     private Scanner in;
     private List<ColetaDomiciliar> list;
-    private String ultimaConsulta;
+    private List<ColetaDomiciliar> ultimaConsulta;
     public App()
     {
         in = new Scanner(System.in);
         list = new ArrayList<>();
-        ultimaConsulta = null;
+        ultimaConsulta = new ArrayList<>();
     }
 
     public void inicializa()
@@ -109,12 +109,12 @@ public class App
     {
         try
         {
-            ultimaConsulta = null;
+            String msg = null;
             for(ColetaDomiciliar cd : list)
             {
-                ultimaConsulta += cd + "\n";
+                msg += cd + "\n";
             }
-            if(ultimaConsulta == null)
+            if(msg == null)
                 throw new DadosAbertosException();
             System.out.println(ultimaConsulta);
         }
