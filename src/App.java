@@ -108,16 +108,18 @@ public class App
     {
         try
         {
-            StringBuilder msg = new StringBuilder();
+            String msg = null;
             for(ColetaDomiciliar cd : list)
             {
-                msg.append(cd.toString()).append("\n");
+                msg += cd + "\n";
             }
+            if(msg == null)
+                throw new DadosAbertosException();
             System.out.println(msg);
         }
-        catch(Exception e)
+        catch(DadosAbertosException da)
         {
-            System.err.println(e.getMessage());
+            System.err.println(da);
         }
     }
     private void apresentaMenuOpcoes()
