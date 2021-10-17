@@ -21,7 +21,7 @@ public class App
 
     public void inicializa()
     {
-        System.out.println("Informe o do arquivo: ");
+        System.out.println("Informe o nome do arquivo: ");
         String arq = in.nextLine();
         Path path = Paths.get(arq);
         try(BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset()))
@@ -79,10 +79,16 @@ public class App
                     consultaEndereco();
                     break;
                 case 4:
+                    salvaDados();
                     break;
-
             }
         }while(op != 0);
+    }
+
+    private <T> void printArray(List<T> array)
+    {
+        for(T tipo : array)
+            System.out.println(tipo);
     }
 
     private void consultaEndereco()
@@ -91,13 +97,15 @@ public class App
         String endereco = in.nextLine();
         try
         {
-            String msg = null;
+            ultimaConsulta.clear();
             for(ColetaDomiciliar cd : list)
                 if (cd.getNomeLogradouro().equalsIgnoreCase(endereco))
-                    msg += cd + "\n";
+                    ultimaConsulta.add(cd);
 
-            if(msg == null)
+            if(ultimaConsulta.isEmpty())
                 throw new DadosAbertosException();
+            printArray(ultimaConsulta);
+
         }
         catch(DadosAbertosException da)
         {
@@ -107,21 +115,12 @@ public class App
 
     private void mostraInformacoes()
     {
-        try
-        {
-            String msg = null;
+            StringBuilder msg = new StringBuilder();
             for(ColetaDomiciliar cd : list)
             {
-                msg += cd + "\n";
+                msg.append(cd).append("\n");
             }
-            if(msg == null)
-                throw new DadosAbertosException();
-            System.out.println(ultimaConsulta);
-        }
-        catch(DadosAbertosException da)
-        {
-            System.err.println(da);
-        }
+            System.out.println(msg);
     }
 
     private void salvaDados()
@@ -129,10 +128,15 @@ public class App
         System.out.println("Informe o nome do arquivo texto que será utilizado para armazenar os dados: ");
         String nomeArq = in.nextLine();
         Path path = Paths.get(nomeArq);
-        try
+        try(PrintWriter pw = new PrintWriter(Files.newBufferedWriter(path, Charset.defaultCharset()));)
         {
-            BufferedWriter bw = Files.newBufferedWriter(path, Charset.defaultCharset());
-            PrintWriter pw = new PrintWriter(bw);
+            for(ColetaDomiciliar cd : ultimaConsulta)
+            {
+                pw.format("%s;%s;%s;%s;%d;%d;%s;%s;%d;%d;%s", cd.getDataExtracao(), cd.getCategoria(),
+                        cd.getCodLogradouro(), cd.getDiasColeta(), cd.getImparFim(), cd.getImparInicio(),
+                        cd.getLado(), cd.getNomeLogradouro(), cd.getParFim(), cd.getParInicio(), cd.getArea());
+
+            }
         }
         catch(IOException io)
         {
