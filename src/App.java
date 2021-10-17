@@ -86,15 +86,24 @@ public class App
 
     public void mostraInformacoes()
     {
-        StringBuilder msg = new StringBuilder();
-        for(ColetaDomiciliar cd : list)
+        try
         {
-            msg.append(cd.toString()).append("\n");
-        }
-        if(msg == null)
-            throw new NoSuchElementException();
-        else
+            StringBuilder msg = new StringBuilder();
+            for(ColetaDomiciliar cd : list)
+            {
+                msg.append(cd.toString()).append("\n");
+            }
             System.out.println(msg);
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
+        finally
+        {
+            System.out.println(msg);
+        }
+
     }
     private void apresentaMenuOpcoes()
     {
