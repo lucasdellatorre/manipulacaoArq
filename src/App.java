@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,10 +11,12 @@ public class App
 {
     private Scanner in;
     private List<ColetaDomiciliar> list;
+    private String ultimaConsulta;
     public App()
     {
         in = new Scanner(System.in);
         list = new ArrayList<>();
+        ultimaConsulta = null;
     }
 
     public void inicializa()
@@ -85,7 +85,7 @@ public class App
         }while(op != 0);
     }
 
-    public void consultaEndereco()
+    private void consultaEndereco()
     {
         System.out.println("Informe o endereco: ");
         String endereco = in.nextLine();
@@ -104,23 +104,41 @@ public class App
             System.err.println(da);
         }
     }
-    public void mostraInformacoes()
+
+    private void mostraInformacoes()
     {
         try
         {
-            String msg = null;
+            ultimaConsulta = null;
             for(ColetaDomiciliar cd : list)
             {
-                msg += cd + "\n";
+                ultimaConsulta += cd + "\n";
             }
-            if(msg == null)
+            if(ultimaConsulta == null)
                 throw new DadosAbertosException();
-            System.out.println(msg);
+            System.out.println(ultimaConsulta);
         }
         catch(DadosAbertosException da)
         {
             System.err.println(da);
         }
+    }
+
+    private void salvaDados()
+    {
+        System.out.println("Informe o nome do arquivo texto que será utilizado para armazenar os dados: ");
+        String nomeArq = in.nextLine();
+        Path path = Paths.get(nomeArq);
+        try
+        {
+            BufferedWriter bw = Files.newBufferedWriter(path, Charset.defaultCharset());
+            PrintWriter pw = new PrintWriter(bw);
+        }
+        catch(IOException io)
+        {
+            System.err.format("Erro de E/S: %s%n", io);
+        }
+
     }
     private void apresentaMenuOpcoes()
     {
