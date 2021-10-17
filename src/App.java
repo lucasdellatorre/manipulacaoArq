@@ -68,6 +68,7 @@ public class App
             switch (op)
             {
                 case 0:
+                    System.out.println("Sistema finalizado!");
                     break;
                 case 1:
                     inicializa();
@@ -144,6 +145,7 @@ public class App
         }
 
     }
+
     private void apresentaMenuOpcoes()
     {
         System.out.println("[0] Sair");
@@ -175,5 +177,4 @@ public class App
         }
         return numero;
     }
-
 }
