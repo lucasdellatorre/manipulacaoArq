@@ -89,13 +89,19 @@ public class App
     {
         System.out.println("Informe o endereco: ");
         String endereco = in.nextLine();
-        StringBuilder msg = new StringBuilder();
-        for(ColetaDomiciliar cd : list)
+        try
         {
-            if (cd.getNomeLogradouro().equalsIgnoreCase(endereco))
-            {
-                msg.append(cd).append("\n");
-            }
+            String msg = null;
+            for(ColetaDomiciliar cd : list)
+                if (cd.getNomeLogradouro().equalsIgnoreCase(endereco))
+                    msg += cd + "\n";
+
+            if(msg == null)
+                throw new DadosAbertosException();
+        }
+        catch(DadosAbertosException da)
+        {
+            System.err.println(da);
         }
     }
     public void mostraInformacoes()
@@ -113,11 +119,6 @@ public class App
         {
             System.err.println(e.getMessage());
         }
-        finally
-        {
-            System.out.println(msg);
-        }
-
     }
     private void apresentaMenuOpcoes()
     {
