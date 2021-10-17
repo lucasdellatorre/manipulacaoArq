@@ -76,6 +76,7 @@ public class App
                     mostraInformacoes();
                     break;
                 case 3:
+                    consultaEndereco();
                     break;
                 case 4:
                     break;
@@ -84,6 +85,19 @@ public class App
         }while(op != 0);
     }
 
+    public void consultaEndereco()
+    {
+        System.out.println("Informe o endereco: ");
+        String endereco = in.nextLine();
+        StringBuilder msg = new StringBuilder();
+        for(ColetaDomiciliar cd : list)
+        {
+            if (cd.getNomeLogradouro().equalsIgnoreCase(endereco))
+            {
+                msg.append(cd).append("\n");
+            }
+        }
+    }
     public void mostraInformacoes()
     {
         try
