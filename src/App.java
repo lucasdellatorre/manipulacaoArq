@@ -12,6 +12,7 @@ public class App
     private Scanner in;
     private List<ColetaDomiciliar> list;
     private List<ColetaDomiciliar> ultimaConsulta;
+
     public App()
     {
         in = new Scanner(System.in);
@@ -61,27 +62,20 @@ public class App
     public void executa()
     {
         int op;
-        do {
+        do
+        {
             apresentaMenuOpcoes();
-            System.out.println("Digite uma opcao: ");
+            System.out.print("Digite uma opcao: ");
             op = leInteiro();
             switch (op)
             {
                 case 0:
                     System.out.println("Sistema finalizado!");
                     break;
-                case 1:
-                    inicializa();
-                    break;
-                case 2:
-                    mostraInformacoes();
-                    break;
-                case 3:
-                    consultaEndereco();
-                    break;
-                case 4:
-                    salvaDados();
-                    break;
+                case 1: inicializa();        break;
+                case 2: mostraInformacoes(); break;
+                case 3: consultaEndereco();  break;
+                case 4: salvaDados();        break;
             }
         }while(op != 0);
     }
@@ -94,10 +88,11 @@ public class App
 
     private void consultaEndereco()
     {
-        System.out.println("Informe o endereco: ");
+        System.out.print("Informe o endereco: ");
         String endereco = in.nextLine();
         try
         {
+            //Limpa a ultima consulta
             ultimaConsulta.clear();
             for(ColetaDomiciliar cd : list)
                 if (cd.getNomeLogradouro().equalsIgnoreCase(endereco))
@@ -106,7 +101,6 @@ public class App
             if(ultimaConsulta.isEmpty())
                 throw new DadosAbertosException();
             printArray(ultimaConsulta);
-
         }
         catch(DadosAbertosException da)
         {
@@ -116,15 +110,15 @@ public class App
 
     private void mostraInformacoes()
     {
-            StringBuilder msg = new StringBuilder();
-            for(ColetaDomiciliar cd : list)
-                msg.append(cd).append("\n");
-            System.out.println(msg);
+        StringBuilder msg = new StringBuilder();
+        for(ColetaDomiciliar cd : list)
+            msg.append(cd).append("\n");
+        System.out.println(msg);
     }
 
     private void salvaDados()
     {
-        System.out.println("Informe o nome do arquivo texto que será utilizado para armazenar os dados: ");
+        System.out.print("Informe o nome do arquivo texto que será utilizado para armazenar os dados: ");
         String nomeArq = in.nextLine();
         Path path = Paths.get(nomeArq);
         try(PrintWriter pw = new PrintWriter(Files.newBufferedWriter(path, Charset.defaultCharset()));)
@@ -143,11 +137,14 @@ public class App
 
     private void apresentaMenuOpcoes()
     {
-        System.out.println("[0] Sair");
-        System.out.println("[1] Carregar dados");
-        System.out.println("[2] Apresentar dados");
-        System.out.println("[3] Consultar por endereco");
-        System.out.println("[4] Salvar dados da consulta");
+        System.out.println("╔═════════════════════════════╗");
+        System.out.println("║           *Menu*            ║");
+        System.out.println("║[0] Sair                     ║");
+        System.out.println("║[1] Carregar dados           ║");
+        System.out.println("║[2] Apresentar dados         ║");
+        System.out.println("║[3] Consultar por endereco   ║");
+        System.out.println("║[4] Salvar dados da consulta ║");
+        System.out.println("╚═════════════════════════════╝");
     }
 
     private int leInteiro()
