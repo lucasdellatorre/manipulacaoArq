@@ -118,9 +118,7 @@ public class App
     {
             StringBuilder msg = new StringBuilder();
             for(ColetaDomiciliar cd : list)
-            {
                 msg.append(cd).append("\n");
-            }
             System.out.println(msg);
     }
 
@@ -132,12 +130,9 @@ public class App
         try(PrintWriter pw = new PrintWriter(Files.newBufferedWriter(path, Charset.defaultCharset()));)
         {
             for(ColetaDomiciliar cd : ultimaConsulta)
-            {
-                pw.format("%s;%s;%s;%s;%d;%d;%s;%s;%d;%d;%s", cd.getDataExtracao(), cd.getCategoria(),
+                pw.format("%s;%s;%s;%s;%d;%d;%s;%s;%d;%d;%s%n", cd.getDataExtracao(), cd.getCategoria(),
                         cd.getCodLogradouro(), cd.getDiasColeta(), cd.getImparFim(), cd.getImparInicio(),
                         cd.getLado(), cd.getNomeLogradouro(), cd.getParFim(), cd.getParInicio(), cd.getArea());
-
-            }
         }
         catch(IOException io)
         {
