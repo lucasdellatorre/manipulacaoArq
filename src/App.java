@@ -25,11 +25,11 @@ public class App
         System.out.println("Informe o nome do arquivo: ");
         String arq = in.nextLine();
         Path path = Paths.get(arq);
-        try(BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset()))
+        try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset()))
         {
             String line = br.readLine();
             line = br.readLine();
-            while((line = br.readLine()) != null)
+            while ((line = br.readLine()) != null)
             {
                 Scanner sc = new Scanner(line).useDelimiter(";");
                 String dataExtracao = sc.next().trim();
@@ -77,7 +77,7 @@ public class App
                 case 3: consultaEndereco();  break;
                 case 4: salvaDados();        break;
             }
-        }while(op != 0);
+        } while(op != 0);
     }
 
     private <T> void printArray(List<T> array)
@@ -98,7 +98,7 @@ public class App
                 if (cd.getNomeLogradouro().equalsIgnoreCase(endereco))
                     ultimaConsulta.add(cd);
 
-            if(ultimaConsulta.isEmpty())
+            if (ultimaConsulta.isEmpty())
                 throw new DadosAbertosException();
             printArray(ultimaConsulta);
         }
