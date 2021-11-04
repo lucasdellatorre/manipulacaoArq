@@ -28,7 +28,9 @@ public class App
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset()))
         {
             String line = br.readLine();
+            System.out.println();
             line = br.readLine();
+            System.out.println();
             while ((line = br.readLine()) != null)
             {
                 Scanner sc = new Scanner(line).useDelimiter(";");
@@ -104,16 +106,25 @@ public class App
         }
         catch(DadosAbertosException da)
         {
-            System.err.println(da);
+            System.err.println(da.getMessage());
         }
     }
 
     private void mostraInformacoes()
     {
         StringBuilder msg = new StringBuilder();
-        for(ColetaDomiciliar cd : list)
-            msg.append(cd).append("\n");
-        System.out.println(msg);
+        try
+        {
+            if(list.isEmpty())
+                throw new DadosAbertosException();
+            for(ColetaDomiciliar cd : list)
+                msg.append(cd).append("\n");
+            System.out.println(msg);
+        }
+        catch(DadosAbertosException da)
+        {
+            System.err.println(da.getMessage());
+        }
     }
 
     private void salvaDados()
@@ -123,20 +134,26 @@ public class App
         Path path = Paths.get(nomeArq);
         try(PrintWriter pw = new PrintWriter(Files.newBufferedWriter(path, Charset.defaultCharset()));)
         {
+            if(ultimaConsulta.isEmpty())
+                throw new DadosAbertosException();
             for(ColetaDomiciliar cd : ultimaConsulta)
                 pw.format("%s;%s;%s;%s;%d;%d;%s;%s;%d;%d;%s%n", cd.getDataExtracao(), cd.getCategoria(),
                         cd.getCodLogradouro(), cd.getDiasColeta(), cd.getImparFim(), cd.getImparInicio(),
                         cd.getLado(), cd.getNomeLogradouro(), cd.getParFim(), cd.getParInicio(), cd.getArea());
         }
-        catch(IOException io)
+        catch (IOException io)
         {
             System.err.format("Erro de E/S: %s%n", io);
         }
-
+        catch (DadosAbertosException da)
+        {
+            System.err.println(da.getMessage());
+        }
     }
 
     private void apresentaMenuOpcoes()
     {
+        System.out.println();
         System.out.println("╔═════════════════════════════╗");
         System.out.println("║           *Menu*            ║");
         System.out.println("║[0] Sair                     ║");
